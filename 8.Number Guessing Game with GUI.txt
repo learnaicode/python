@@ -1,0 +1,42 @@
+import tkinter as tk
+import random
+
+# Step 1: Create the main application window
+app = tk.Tk()
+app.title("Number Guessing Game")
+
+# Step 2: Generate a random number
+random_number = random.randint(1, 100)
+
+# Step 3: Initialize variables
+attempts = 0
+
+# Step 4: Create a function to check the user's guess
+def check_guess():
+    global attempts
+    attempts += 1
+    guess = int(guess_entry.get())
+    
+    if guess < random_number:
+        result_label.config(text="Try higher.")
+    elif guess > random_number:
+        result_label.config(text="Try lower.")
+    else:
+        result_label.config(text=f"Congratulations! You guessed it in {attempts} attempts.")
+        guess_button.config(state=tk.DISABLED)
+        guess_entry.config(state=tk.DISABLED)
+
+# Step 5: Create GUI elements
+instruction_label = tk.Label(app, text="Guess a number between 1 and 100:")
+guess_entry = tk.Entry(app, width=10)
+guess_button = tk.Button(app, text="Guess", command=check_guess)
+result_label = tk.Label(app, text="")
+
+# Step 6: Place GUI elements on the window
+instruction_label.pack()
+guess_entry.pack()
+guess_button.pack()
+result_label.pack()
+
+# Step 7: Start the GUI main loop
+app.mainloop()

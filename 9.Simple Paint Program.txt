@@ -1,0 +1,58 @@
+import tkinter as tk
+
+# Step 1: Create the main application window
+app = tk.Tk()
+app.title("Simple Paint Program")
+
+# Step 2: Initialize drawing variables
+canvas = tk.Canvas(app, width=400, height=400, bg="white")
+canvas.pack()
+
+color = "black"
+drawing = False
+last_x = 0
+last_y = 0
+
+# Step 3: Create functions for drawing
+def start_draw(event):
+    global drawing, last_x, last_y
+    drawing = True
+    last_x, last_y = event.x, event.y
+
+def end_draw(event):
+    global drawing
+    drawing = False
+
+def draw(event):
+    global last_x, last_y
+    if drawing:
+        x, y = event.x, event.y
+        canvas.create_line((last_x, last_y, x, y), fill=color, width=2)
+        last_x, last_y = x, y
+
+# Step 4: Create a color picker
+def change_color(new_color):
+    global color
+    color = new_color
+
+color_picker_frame = tk.Frame(app)
+color_picker_frame.pack()
+
+colors = ["black", "red", "blue", "green", "purple", "orange", "yellow"]
+
+for c in colors:
+    tk.Button(
+        color_picker_frame,
+        bg=c,
+        width=2,
+        height=1,
+        command=lambda new_color=c: change_color(new_color)
+    ).pack(side=tk.LEFT, padx=5)
+
+# Step 5: Bind mouse events to drawing functions
+canvas.bind("<Button-1>", start_draw)
+canvas.bind("<ButtonRelease-1>", end_draw)
+canvas.bind("<B1-Motion>", draw)
+
+# Step 6: Start the GUI main loop
+app.mainloop()

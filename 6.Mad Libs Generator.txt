@@ -1,0 +1,41 @@
+# Step 1: Define a Mad Libs template
+template = """
+Once upon a time in a {adjective} {place}, there lived a {adjective} {animal}.
+This {animal} was known for its {adjective} {feature}.
+One day, {name} decided to visit the {place}.
+{name} was carrying a {noun} and wearing a {color} {clothing}.
+As {name} walked through the {place}, {animal} approached and said, "{greeting}!"
+{name} replied, "{response}."
+And so, they became fast {plural_noun} forever.
+"""
+
+# Step 2: Get user input for the Mad Libs
+print("Welcome to the Mad Libs Generator!")
+adjective = input("Enter an adjective: ")
+place = input("Enter a place: ")
+animal = input("Enter an animal: ")
+name = input("Enter a name: ")
+noun = input("Enter a noun: ")
+color = input("Enter a color: ")
+clothing = input("Enter a piece of clothing: ")
+greeting = input("Enter a greeting: ")
+response = input("Enter a response: ")
+plural_noun = input("Enter a plural noun: ")
+
+# Step 3: Fill in the template with user inputs
+mad_libs_story = template.format(
+    adjective=adjective,
+    place=place,
+    animal=animal,
+    name=name,
+    noun=noun,
+    color=color,
+    clothing=clothing,
+    greeting=greeting,
+    response=response,
+    plural_noun=plural_noun
+)
+
+# Step 4: Display the generated Mad Libs story
+print("\nHere's your Mad Libs story:")
+print(mad_libs_story)
